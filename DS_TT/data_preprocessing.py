@@ -8,11 +8,15 @@ data = pd.read_csv("diamonds_masked.csv", index_col=0)
 # Drop columns
 data.drop(['depth', 'table'], axis='columns', inplace=True)
 
-
 # Nan value handling
-data.dropna(axis=0, inplace=True)
-data.reset_index(drop=True, inplace=True)
-# data.fillna(method='bfill', inplace=True)
+# data.dropna(axis=0, inplace=True)
+# data.reset_index(drop=True, inplace=True)
+data['cut'].fillna(method='bfill', inplace=True)
+data['color'].fillna(method='bfill', inplace=True)
+data['clarity'].fillna(method='bfill', inplace=True)
+data.interpolate(method='linear', inplace=True)
+
+# Run either MR or KNN.
 
 
 # VER. Multiple Regression
@@ -34,7 +38,6 @@ print(data_transformed.head())
 data_transformed.to_csv("diamonds_MR.csv")
 """
 
-
 # VER. K-NN
 """"""
 num_attr = ['carat', 'x', 'y', 'z']
@@ -55,20 +58,17 @@ data_labeled['clarity'] = (pp.LabelEncoder().fit_transform(data['clarity']))
 # concat dataframe
 data_transformed = pd.concat([data_transformed, data_labeled], axis=1)
 
-
 # Data range
 label_range = [x for x in range(0, 20001, 2000)]  # divide
 
 price_label = pd.DataFrame()
-price_label['price'] = data.dropna()['price']
+price_label['price'] = data['price']
 
 for i in range(len(label_range) - 1):
     price_label['price'] = price_label['price'].apply(lambda x: i if label_range[i] < x <= label_range[i + 1] else x)
 
-
 # concat dataframe
 data_transformed = pd.concat([data_transformed, price_label], axis=1)
-
 
 # categorical value scaling
 num_attr = ['cut', 'color', 'clarity']
@@ -83,7 +83,6 @@ new_data.rename(columns={0: 'cut', 1: 'color', 2: 'clarity'}, inplace=True)
 data_transformed['cut'] = new_data['cut']
 data_transformed['color'] = new_data['color']
 data_transformed['clarity'] = new_data['clarity']
-
 
 print(data_transformed.head(5))
 data_transformed.to_csv("diamonds_KNN.csv")
