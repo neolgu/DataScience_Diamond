@@ -12,7 +12,7 @@ y = data['price']
 
 kfold = KFold(5, shuffle=True)
 gcv = GridSearchCV(KNeighborsClassifier(),
-                   param_grid={'n_neighbors': np.arange(1, 20, 2),
+                   param_grid={'n_neighbors': np.arange(1, 200, 2),
                                'p': [1, 2]},
                    cv=kfold,
                    scoring='f1_micro',

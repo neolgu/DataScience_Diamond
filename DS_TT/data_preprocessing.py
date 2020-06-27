@@ -21,7 +21,7 @@ data.interpolate(method='linear', inplace=True)
 
 
 # VER. Multiple Regression
-"""
+""""""
 num_attr = ['carat', 'price', 'x', 'y', 'z']
 cat_attr = ['cut', 'color', 'clarity']
 transformer = ColumnTransformer([
@@ -37,10 +37,10 @@ print(data_transformed.head())
 
 # Save transformed data
 data_transformed.to_csv("diamonds_MR.csv")
-"""
+""""""
 
 # VER. K-NN
-""""""
+"""
 num_attr = ['carat', 'x', 'y', 'z']
 transformer = ColumnTransformer([
     ('num', pp.StandardScaler(), num_attr)  # numeric standard scaling
@@ -87,4 +87,4 @@ data_transformed['clarity'] = new_data['clarity']
 
 print(data_transformed.head(5))
 data_transformed.to_csv("diamonds_KNN.csv")
-""""""
+"""
