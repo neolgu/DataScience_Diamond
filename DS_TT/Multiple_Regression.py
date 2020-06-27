@@ -27,6 +27,7 @@ multiple_regression.fit(X_train, y_train)
 y_pred = multiple_regression.predict(X_test)
 errors = y_test - y_pred
 
+# Show Graph
 plt.scatter(y_test, y_pred)
 x_lim = plt.xlim()
 y_lim = plt.ylim()

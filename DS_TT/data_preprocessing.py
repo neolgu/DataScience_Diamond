@@ -3,7 +3,7 @@ import numpy as np
 import sklearn.preprocessing as pp
 from sklearn.compose import ColumnTransformer
 
-data = pd.read_csv("diamonds_masked.csv", index_col=0)
+data = pd.read_csv("diamonds.csv", index_col=0)
 
 # Drop columns
 data.drop(['depth', 'table'], axis='columns', inplace=True)
@@ -15,6 +15,7 @@ data['cut'].fillna(method='bfill', inplace=True)
 data['color'].fillna(method='bfill', inplace=True)
 data['clarity'].fillna(method='bfill', inplace=True)
 data.interpolate(method='linear', inplace=True)
+
 
 # Run either MR or KNN.
 

@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-data = pd.read_csv("diamonds_masked.csv")
+data = pd.read_csv("diamonds.csv")
 
 # data_del = data.drop(['num', 'price'], axis=1)
 #
@@ -24,7 +24,7 @@ data = pd.read_csv("diamonds_masked.csv")
 # data['y'] = data_del['y']
 # data['z'] = data_del['z']
 #
-# # data.drop(['num'], axis=1).to_csv("diamonds_masked.csv", mode="w")
+# # data.drop(['num'], axis=1).to_csv("diamonds.csv", mode="w")
 
 print(data.isnull().sum())
 print(data.dropna())
